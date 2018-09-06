@@ -103,6 +103,7 @@
       var data = me.data;
       if (!me.action) {
         throw new Error('must have action');
+        return;
       }
 
       var params = new FormData();
@@ -204,9 +205,11 @@
 
       if (!me.container) {
         throw new Error('most has container');
+        return;
       }
       if (!me.imageElement) {
         throw new Error('most has imageElement');
+        return;
       }
 
       me.boxWidth = options.boxWidth || options.sizes[ 0 ].width;
@@ -513,6 +516,7 @@
         && sourceHeight < canvasHeight
       ) {
         throw new Error('image is smaller than ' + canvasWidth + '*' + canvasHeight);
+        return;
       }
 
       var radio = sourceWidth / sourceHeight;
