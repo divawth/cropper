@@ -1,0 +1,92 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .element {
+      text-align: center;
+      position: relative;
+
+    }
+    .cropper-box {
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: #000;
+    }
+    .cropper-point {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background-color: #fff;
+    }
+
+    img {
+      border: 1px solid #000;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <form>
+    <input type="file">
+  </form>
+  <div class="view-cropper"></div>
+  <div class="view-images"></div>
+  <button>
+    销毁
+  </button>
+  <script src="./dist/cropper.js"></script>
+  <script>
+    document.querySelector('input').addEventListener('change', function (event) {
+      var url = event.target.value;
+      var file = this.files[0];
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = function(e) {
+        var image = new Image();
+        image.src = this.result;
+        setTimeout(function () {
+          
+          var cropInstance = new Cropper({
+            container: '.view-cropper',
+            imageWrapper: '.view-images',
+            image: image,
+            // 这个根据 size 取比例 传一个初始的值
+            boxWidth: 150,
+            canvasWidth: 300,
+            canvasHeight: 300,
+            sizes: [
+              {
+                width: 30,
+                height: 30
+              },
+              {
+                width: 60,
+                height: 60
+              },
+              {
+                width: 90,
+                height: 90
+              }
+            ],
+            // 如果需要上传
+            // data: {
+            //   app_version: '1.1.0'
+            // },
+            // action: 'http://test-www.finstao.com/v1/upload/image',
+          });
+
+          document.getElementsByTagName('button')[0]
+          .addEventListener('click', function () {
+            cropInstance.dispose();
+          });
+        }, 1000);
+      }
+
+    });
+  </script>
+</body>
+</html>
