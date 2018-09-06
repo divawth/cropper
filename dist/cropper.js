@@ -75,13 +75,14 @@
   }
 
   function Cropper(options) {
-    options.version = '1';
     this.init(options);
   }
 
   Cropper.prototype = {
-
+    
     constructor: Cropper,
+
+    version: '0.0.1',
 
     dispose: function () {
       var me = this;
