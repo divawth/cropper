@@ -35,10 +35,14 @@
   </form>
   <div class="view-cropper"></div>
   <div class="view-images"></div>
-  <button>
+  <button id="destory">
     销毁
   </button>
-  <script src="//unpkg.com/bell-cropper@0.0.1/dist/cropper.js"></script>
+  <button id="get">
+    获取
+  </button>
+  <!-- <script src="//unpkg.com/bell-cropper@0.0.1/dist/cropper.js"></script> -->
+  <script src="./dist/cropper.js"></script>
   <script>
     document.querySelector('input').addEventListener('change', function (event) {
       var url = event.target.value;
@@ -79,9 +83,13 @@
             // action: 'http://test-www.finstao.com/v1/upload/image',
           });
 
-          document.getElementsByTagName('button')[0]
+          document.getElementsByTagName('button')[ 0 ]
           .addEventListener('click', function () {
             cropInstance.dispose();
+          });
+          document.getElementsByTagName('button')[ 1 ]
+          .addEventListener('click', function () {
+            console.log(cropInstance.getData());
           });
         }, 1000);
       }

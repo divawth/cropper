@@ -219,7 +219,6 @@
       if (me.sizesList[ 0 ]) {
         me.radio = me.sizesList[ 0 ].width / me.sizesList[ 0 ].height;
       }
-
       me.insertCanvas();
       me.insertImage()
       .then(function () {
@@ -280,6 +279,9 @@
         boxWidth = boxHeight * radio;
       }
 
+      if (Math.abs(offsetHeight) == Math.abs(offsetY) && offsetY) {
+        offsetY = offsetY / Math.abs(offsetY) * Math.abs(boxHeight - me.boxRect.height);
+      }
       var startX = boxRect.startX + offsetX;
       var startY = boxRect.startY + offsetY;
 
@@ -293,7 +295,7 @@
       startY = (startY + boxHeight) > (sourceImage.sy + sourceImage.sh)
         ? sourceImage.sy + sourceImage.sh - boxHeight
         : startY;
-        
+
       me.boxRect[ 'startX' ] = startX;
       me.boxRect[ 'startY' ] = startY;
       me.boxRect[ 'width' ] = boxWidth;
@@ -417,7 +419,7 @@
 
       var radio = me.radio;
       var boxWidth = me.boxRect ? me.boxRect.width : me.boxWidth * RATIO;
-      var boxHeight = boxWidth * radio;
+      var boxHeight = boxWidth / radio;
       var sourceImage = me.sourceImage;
 
       if (boxWidth > sourceImage.sw) {
@@ -485,6 +487,7 @@
       var points = me.boxRect.points;
 
       // 绘制图
+      ctx.strokeStyle = '#fff';
       drawLine(ctx, startX, startY, (startX + boxWidth), startY);
       drawLine(ctx, (startX + boxWidth), startY, (startX + boxWidth), (startY + boxHeight));
       drawLine(ctx, (startX + boxWidth), (startY + boxHeight), startX, (startY + boxHeight));
