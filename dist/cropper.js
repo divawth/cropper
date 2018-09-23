@@ -518,6 +518,7 @@
       if (sourceWidth < canvasWidth
         && sourceHeight < canvasHeight
       ) {
+        me.canvas.remove();
         throw new Error('image is smaller than ' + canvasWidth + '*' + canvasHeight);
         return;
       }
@@ -584,8 +585,8 @@
       var me = this;
       var canvasElement = document.createElement('canvas');
 
-      canvasElement.style.width = me.canvasWidth;
-      canvasElement.style.height = me.canvasHeight;
+      canvasElement.style.width = me.canvasWidth + 'px';
+      canvasElement.style.height = me.canvasHeight + 'px';
       canvasElement.width = me.canvasWidth * RATIO;
       canvasElement.height = me.canvasHeight * RATIO;
 
