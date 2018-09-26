@@ -79,7 +79,7 @@
   }
 
   Cropper.prototype = {
-    
+
     constructor: Cropper,
 
     version: '0.0.1',
@@ -190,7 +190,7 @@
           imageElement.style[ 'height' ] = size[ 'height' ] + 'px';
           me.imageElement.append(imageElement);
         }
-        
+
         canvas.remove();
       }
 
@@ -227,7 +227,7 @@
       });
       me.bindEvent();
 
-    },  
+    },
 
     isPointInCropperBox: function (x, y) {
       var me = this;
@@ -245,12 +245,12 @@
     },
 
     resizeBox: function (offsetX, offsetY, offsetWidth, offsetHeight) {
-      
+
       offsetX = offsetX * RATIO;
       offsetY = offsetY * RATIO;
       offsetWidth = offsetWidth * RATIO;
       offsetHeight = offsetHeight * RATIO;
-      
+
       var me = this;
       var radio = me.radio;
 
@@ -371,7 +371,7 @@
         var x = event.offsetX;
         var y = event.offsetY;
         var points = me.boxRect[ 'points' ];
-        
+
         if (Math.abs((points[ 3 ].x / RATIO) - x) < CHECKED_AREA_SIZE
           && Math.abs((points[ 3 ].y / RATIO) - y) < CHECKED_AREA_SIZE
         ) {
@@ -430,7 +430,7 @@
         boxHeight = sourceImage.sh;
         boxWidth = boxHeight * radio;
       }
-      
+
       x = x ? RATIO * x : 0;
       y = y ? RATIO * y : 0;
 
@@ -450,7 +450,7 @@
       startY = (startY + boxHeight) > (sourceImage.sy + sourceImage.sh)
         ? sourceImage.sy + sourceImage.sh - boxHeight
         : startY;
-      
+
       ctx.save();
       // 绘制阴影
       ctx.beginPath();
@@ -519,6 +519,7 @@
         && sourceHeight < canvasHeight
       ) {
         me.canvas.remove();
+        alert('image is too small');
         throw new Error('image is smaller than ' + canvasWidth + '*' + canvasHeight);
         return;
       }
@@ -530,12 +531,12 @@
       }
       if (sourceHeight > canvasHeight) {
         sourceHeight = canvasHeight;
-        sourceWidth = sourceWidth * radio;
+        sourceWidth = sourceHeight * radio;
       }
 
       var startX = (canvasWidth - sourceWidth + CHECKED_AREA_SIZE) / 2;
       var startY = (canvasHeight - sourceHeight + CHECKED_AREA_SIZE) / 2;
-      
+
       me.ctx.drawImage(
         me.image,
         0,
@@ -592,7 +593,7 @@
 
       canvasElement.style.backgroundColor = 'transparent';
       canvasElement.style.border = '1px solid #efefec';
-      me.container.append(canvasElement); 
+      me.container.append(canvasElement);
       me.container.style.userSelect = 'none';
       me.canvas = canvasElement;
       me.ctx = me.canvas.getContext('2d');
