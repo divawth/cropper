@@ -160,8 +160,8 @@
         var size = sizesList[ i ];
         var canvas = document.createElement('canvas');
         var ctx = canvas.getContext('2d');
-        canvas.width = size[ 'width' ] * RATIO;
-        canvas.height = size[ 'height' ] * RATIO;
+        canvas.width = size[ 'width' ] * 2;
+        canvas.height = size[ 'height' ] * 2;
 
         ctx.drawImage(
           me.image,
