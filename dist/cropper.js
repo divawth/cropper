@@ -88,7 +88,9 @@
       var me = this;
       if (me) {
         document.removeEventListener('mousemove', me.handlerMouseMove);
-        me.container.removeChild(me.canvas);
+        if (me.container.hasChildNodes()) {
+          me.container.removeChild(me.canvas);
+        }
         me = null;
       }
     },
