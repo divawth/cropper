@@ -162,8 +162,8 @@
         var size = sizesList[ i ];
         var canvas = document.createElement('canvas');
         var ctx = canvas.getContext('2d');
-        canvas.width = size[ 'width' ] * 2;
-        canvas.height = size[ 'height' ] * 2;
+        canvas.width = size[ 'width' ];
+        canvas.height = size[ 'height' ];
 
         ctx.drawImage(
           me.image,
@@ -182,14 +182,18 @@
         var imageElement = me.imageElement.querySelectorAll('img')[ i ];
         if (imageElement) {
           imageElement.src = file;
-          imageElement.style[ 'width' ] = size[ 'width' ] + 'px';
-          imageElement.style[ 'height' ] = size[ 'height' ] + 'px';
+          imageElement.style[ 'width' ] = size[ 'width' ] / RATIO + 'px';
+          imageElement.style[ 'height' ] = size[ 'height' ] / RATIO + 'px';
+          imageElement.style[ 'maxWidth' ] = '100%';
+          imageElement.style[ 'maxHeight' ] = '100%';
         }
         else {
           imageElement = document.createElement('img');
           imageElement.src = file;
-          imageElement.style[ 'width' ] = size[ 'width' ] + 'px';
-          imageElement.style[ 'height' ] = size[ 'height' ] + 'px';
+          imageElement.style[ 'width' ] = size[ 'width' ] / RATIO + 'px';
+          imageElement.style[ 'height' ] = size[ 'height' ] / RATIO + 'px';
+          imageElement.style[ 'maxWidth' ] = '100%';
+          imageElement.style[ 'maxHeight' ] = '100%';
           me.imageElement.append(imageElement);
         }
 
